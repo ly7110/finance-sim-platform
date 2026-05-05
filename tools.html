@@ -12,6 +12,9 @@
         .con{width:90%;margin:30px auto;text-align:center;}
         h2{color:#00529b;margin:20px 0;}
         .tool-item{border:1px solid #ccc;margin:15px;padding:15px;border-radius:6px;}
+        input{padding:5px;margin:5px;width:150px;}
+        button{padding:5px 15px;background:#00529b;color:#fff;border:none;border-radius:4px;}
+        #result{margin-top:10px;color:red;font-weight:bold;}
     </style>
 </head>
 <body>
@@ -24,10 +27,28 @@
         <a href="study.html">学习资料</a>
     </div>
     <div class="con">
-        <h2>金融理财实用工具</h2>
-        <div class="tool-item">基金收益计算器</div>
-        <div class="tool-item">股票盈亏测算工具</div>
-        <div class="tool-item">资产配置参考模板</div>
+        <h2>理财实用计算器</h2>
+        <div class="tool-item">
+            <h3>收益率计算器</h3>
+            <input type="number" id="cost" placeholder="投入本金(元)">
+            <input type="number" id="income" placeholder="到期收益(元)">
+            <br>
+            <button onclick="calcRate()">计算收益率</button>
+            <div id="result"></div>
+        </div>
     </div>
+
+    <script>
+        function calcRate(){
+            let cost=parseFloat(document.getElementById('cost').value);
+            let income=parseFloat(document.getElementById('income').value);
+            if(isNaN(cost) || isNaN(income) || cost<=0){
+                document.getElementById('result').innerText="请输入有效本金和收益";
+                return;
+            }
+            let rate=(income/cost)*100;
+            document.getElementById('result').innerText=`收益率：${rate.toFixed(2)}%`;
+        }
+    </script>
 </body>
 </html>
