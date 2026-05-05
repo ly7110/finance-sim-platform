@@ -4,14 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>K线分析</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         *{margin:0;padding:0;}
         body{font-family:微软雅黑;}
         .nav{background:#00529b;padding:15px;text-align:center;}
         .nav a{color:#fff;text-decoration:none;margin:0 12px;}
-        .con{width:90%;margin:30px auto;text-align:center;}
-        h2{color:#00529b;margin:20px 0;}
-        .box{border:1px solid #ccc;padding:30px;border-radius:8px;}
+        .con{width:90%;margin:30px auto;}
+        h2{color:#00529b;margin:20px 0;text-align:center;}
+        canvas{width:100%;}
     </style>
 </head>
 <body>
@@ -24,11 +25,25 @@
         <a href="study.html">学习资料</a>
     </div>
     <div class="con">
-        <h2>大盘K线走势分析</h2>
-        <div class="box">
-            <p>展示2026年近期指数K线形态、涨跌趋势</p>
-            <p>结合节后首个交易日行情，判断市场整体走势</p>
-        </div>
+        <h2>大盘指数K线走势分析</h2>
+        <p style="text-align:center;">数据时间：2026年4月30日 节前交易日</p>
+        <canvas id="klineChart"></canvas>
     </div>
+
+    <script>
+        const ctx = document.getElementById('klineChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['4.25','4.26','4.27','4.28','4.29','4.30'],
+                datasets: [{
+                    label: '上证指数走势',
+                    data: [4088,4095,4102,4105,4107,4112.16],
+                    borderColor: 'red',
+                    fill:false
+                }]
+            }
+        });
+    </script>
 </body>
 </html>
