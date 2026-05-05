@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
@@ -14,6 +14,9 @@
         table{width:100%;border-collapse:collapse;margin-top:20px;}
         th,td{border:1px solid #ccc;padding:10px;text-align:center;}
         th{background:#00529b;color:#fff;}
+        .form{margin:20px 0;}
+        input,select{padding:5px;margin:5px;}
+        button{padding:5px 15px;background:#00529b;color:#fff;border:none;border-radius:4px;}
     </style>
 </head>
 <body>
@@ -27,7 +30,19 @@
     </div>
     <div class="con">
         <h2>个人模拟交易记录</h2>
-        <table>
+        <div class="form">
+            <select id="type">
+                <option value="基金A">基金A</option>
+                <option value="股票B">股票B</option>
+            </select>
+            <select id="op">
+                <option value="买入">买入</option>
+                <option value="卖出">卖出</option>
+            </select>
+            <input type="number" id="num" placeholder="数量/金额">
+            <button onclick="addTrade()">提交交易</button>
+        </div>
+        <table id="tradeTable">
             <tr>
                 <th>日期</th>
                 <th>品种</th>
@@ -36,21 +51,32 @@
                 <th>盈亏</th>
             </tr>
             <tr>
-                <td>2026-05-06</td>
+                <td>2026-04-30</td>
                 <td>基金A</td>
                 <td>买入</td>
                 <td>1000元</td>
                 <td>-</td>
             </tr>
             <tr>
-                <td>2026-05-06</td>
+                <td>2026-04-30</td>
                 <td>股票B</td>
                 <td>卖出</td>
                 <td>500股</td>
                 <td>+150元</td>
             </tr>
         </table>
-        <p style="margin-top:20px;color:#666;font-size:14px;">注：所有交易均为2026年合规交易日操作，避开节假日休市，仅模拟学习使用</p>
+        <p style="margin-top:20px;color:#666;font-size:14px;">注：交易数据均为2026年4月30日合规交易日，模拟学习使用</p>
     </div>
+    <script>
+        function addTrade(){
+            let type = document.getElementById('type').value;
+            let op = document.getElementById('op').value;
+            let num = document.getElementById('num').value;
+            let date = "2026-04-30";
+            let table = document.getElementById('tradeTable');
+            let row = table.insertRow();
+            row.innerHTML = `<td>${date}</td><td>${type}</td><td>${op}</td><td>${num}</td><td>-</td>`;
+        }
+    </script>
 </body>
 </html>
